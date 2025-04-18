@@ -37,11 +37,6 @@ if option == "Exploratory Data Analysis (EDA)":
 
 
 
-    st.subheader("Correlation Heatmap")
-    corr_matrix = data.corr()
-    fig, ax = plt.subplots(figsize=(10, 8))
-    sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
-    st.pyplot(fig)
 
 # Prediction Section
 elif option == "Churn Prediction":
