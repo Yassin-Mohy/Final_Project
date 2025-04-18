@@ -6,9 +6,6 @@ import seaborn as sns
 
 
 
-# Load the trained model
-model = joblib.load('churn_model.pkl')
-
 # Load the dataset (optional, for EDA)
 @st.cache_data  # Cache data to improve performance
 def load_data():
