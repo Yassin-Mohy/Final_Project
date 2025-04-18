@@ -23,7 +23,7 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Display dataset
     st.subheader("Dataset Overview")
-    st.write(data.head())
+  
 
     # Summary statistics
     st.subheader("Summary Statistics")
