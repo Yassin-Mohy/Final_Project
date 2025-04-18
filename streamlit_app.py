@@ -9,7 +9,6 @@ import seaborn as sns
 def load_data():
     return pd.read_csv('data/telecom_churn.csv')
 
-data = load_data()
 
 # Title of the app
 st.title("Churn Prediction Dashboard")
