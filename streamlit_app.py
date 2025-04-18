@@ -37,13 +37,6 @@ if option == "Exploratory Data Analysis (EDA)":
 
 
 
-    st.subheader("Churn Distribution")
-    fig, ax = plt.subplots()
-    ax.set_title("Churn Distribution")
-    ax.set_xlabel("Churn")
-    ax.set_ylabel("Count")
-    st.pyplot(fig)
-
     st.subheader("Correlation Heatmap")
     corr_matrix = data.corr()
     fig, ax = plt.subplots(figsize=(10, 8))
