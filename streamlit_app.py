@@ -33,7 +33,7 @@ if option == "Exploratory Data Analysis (EDA)":
     st.header("Exploratory Data Analysis (EDA)")
 
     st.subheader("Dataset Overview")
-    st.write(data.head())
+  
 
     st.subheader("Summary Statistics")
     st.write(data.describe())
