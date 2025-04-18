@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 # Load dataset (cached for performance)
 @st.cache_data
 def load_data():
-    return pd.read_csv('data/telecom_churn.csv')
+    return pd.read_csv('telecom_churn.csv')
 
 data = load_data()
 
