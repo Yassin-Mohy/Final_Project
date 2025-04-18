@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pickle  # Replace joblib with pickle
+import pickle 
 import matplotlib.pylab as plt
 import seaborn as sns
 
