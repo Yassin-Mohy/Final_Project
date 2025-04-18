@@ -1,3 +1,4 @@
+pip install joblib
 import joblib
 joblib.dump(best_rf, 'churn_model.pkl')
 
