@@ -1,15 +1,20 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import matplotlib.pylab as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
+joblib.dump(best_rf, 'churn_model.pkl')
 
 
+# Load the trained model
+model = joblib.load('churn_model.pkl')
 
 # Load the dataset (optional, for EDA)
 @st.cache_data  # Cache data to improve performance
 def load_data():
     return pd.read_csv('data/telecom_churn.csv')
+
+data = load_data()
 
 # Title of the app
 st.title("Churn Prediction Dashboard")
@@ -24,7 +29,7 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Display dataset
     st.subheader("Dataset Overview")
-    
+    st.write(data.head())
 
     # Summary statistics
     st.subheader("Summary Statistics")
