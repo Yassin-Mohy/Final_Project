@@ -9,7 +9,6 @@ from sklearn.ensemble import RandomForestClassifier
 def load_data():
     return pd.read_csv('data/telecom_churn.csv')
 
-data = load_data()
 
 # Train the model (inside the app to avoid joblib)
 @st.cache_resource
