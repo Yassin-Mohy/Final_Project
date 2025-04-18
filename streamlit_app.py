@@ -1,13 +1,16 @@
 import streamlit as st
 import pandas as pd
-import joblib
-import matplotlib.pyplab as plt
+import pickle  # Replace joblib with pickle
+import matplotlib.pylab as plt
 import seaborn as sns
-joblib.dump(best_rf, 'churn_model.pkl')
 
+# Save the trained model using pickle (do this once after training)
+# with open('churn_model.pkl', 'wb') as file:
+#     pickle.dump(best_rf, file)
 
-# Load the trained model
-model = joblib.load('churn_model.pkl')
+# Load the trained model using pickle
+with open('churn_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 
 # Load the dataset (optional, for EDA)
 @st.cache_data  # Cache data to improve performance
