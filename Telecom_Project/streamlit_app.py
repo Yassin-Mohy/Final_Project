@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import matplotlib.pyplot as plt
+import matplotlib.pyplab as plt
 import seaborn as sns
 joblib.dump(best_rf, 'churn_model.pkl')
 
