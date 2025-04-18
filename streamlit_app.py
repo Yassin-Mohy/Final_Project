@@ -6,7 +6,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 
-data = pd.read_csv('telecom_churn.csv')
+data = pd.read_csv('data/telecom_churn.csv')
+
 
 # Train the model (inside the app to avoid joblib)
 @st.cache_resource
