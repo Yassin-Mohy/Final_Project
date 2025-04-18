@@ -19,7 +19,7 @@ def train_model(df):
     model.fit(X, y)
     return model
 
-model = train_model(data)
+
 
 # Title
 st.title("Churn Prediction Dashboard")
