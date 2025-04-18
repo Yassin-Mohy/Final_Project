@@ -5,11 +5,11 @@ from sklearn.model_selection import train_test_split
 import joblib
 
 # Load dataset
-data = pd.read_csv('telecom_churn.csv')
+df = pd.read_csv('telecom_churn.csv')
 
 # Preprocess data (example preprocessing steps)
-X = data.drop(columns=['churn'])  # Features
-y = data['churn']  # Target
+X = df.drop(columns=['churn'])  # Features
+y = df['churn']  # Target
 
 # Split into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -35,7 +35,7 @@ model = joblib.load('churn_model.pkl')
 def load_data():
     return pd.read_csv('telecom_churn.csv')
 
-data = load_data()
+df = load_data()
 
 # Title of the app
 st.title("Churn Prediction Dashboard")
@@ -50,15 +50,15 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Display dataset
     st.subheader("Dataset Overview")
-    st.write(data.head())
+    st.write(df.head())
 
     # Summary statistics
     st.subheader("Summary Statistics")
-    st.write(data.describe())
+    st.write(df.describe())
 
     # Churn distribution
     st.subheader("Churn Distribution")
-    churn_counts = data['churn'].value_counts()
+    churn_counts = df['churn'].value_counts()
     fig, ax = plt.subplots()
     sns.barplot(x=churn_counts.index, y=churn_counts.values, ax=ax)
     ax.set_title("Churn Distribution")
@@ -68,7 +68,7 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Correlation heatmap
     st.subheader("Correlation Heatmap")
-    corr_matrix = data.corr()
+    corr_matrix = df.corr()
     fig, ax = plt.subplots(figsize=(10, 8))
     sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
     st.pyplot(fig)
