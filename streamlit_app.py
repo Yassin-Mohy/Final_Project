@@ -4,7 +4,6 @@ import joblib
 import matplotlib.pylab as plt
 import seaborn as sns
 
-joblib.dump(best_rf, 'churn_model.pkl')
 
 
 # Load the trained model
