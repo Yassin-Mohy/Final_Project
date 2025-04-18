@@ -39,7 +39,6 @@ if option == "Exploratory Data Analysis (EDA)":
 
     st.subheader("Churn Distribution")
     fig, ax = plt.subplots()
-    sns.barplot(x=churn_counts.index, y=churn_counts.values, ax=ax)
     ax.set_title("Churn Distribution")
     ax.set_xlabel("Churn")
     ax.set_ylabel("Count")
