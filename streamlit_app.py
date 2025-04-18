@@ -1,12 +1,10 @@
-!pip install joblib
-import joblib
-joblib.dump(best_rf, 'churn_model.pkl')
-
 import streamlit as st
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+joblib.dump(best_rf, 'churn_model.pkl')
+
 
 # Load the trained model
 model = joblib.load('churn_model.pkl')
