@@ -1,31 +1,10 @@
-# train_model.py
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-import joblib
-
-# Load dataset
-df = pd.read_csv("C:\Users\Lenovo\Downloads\Telecom Churn\telecom_churn.csv")
-
-# Preprocess data (example preprocessing steps)
-X = df.drop(columns=['churn'])  # Features
-y = df['churn']  # Target
-
-# Split into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Train Random Forest model
-best_rf = RandomForestClassifier(random_state=42)
-best_rf.fit(X_train, y_train)
-
-# Save the trained model
-joblib.dump(best_rf, 'churn_model.pkl')
-
 import streamlit as st
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+joblib.dump(best_rf, 'churn_model.pkl')
+
 
 # Load the trained model
 model = joblib.load('churn_model.pkl')
@@ -33,9 +12,9 @@ model = joblib.load('churn_model.pkl')
 # Load the dataset (optional, for EDA)
 @st.cache_data  # Cache data to improve performance
 def load_data():
-    return pd.read_csv('telecom_churn.csv')
+    return pd.read_csv('data/telecom_churn.csv')
 
-df = load_data()
+data = load_data()
 
 # Title of the app
 st.title("Churn Prediction Dashboard")
@@ -50,15 +29,15 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Display dataset
     st.subheader("Dataset Overview")
-    st.write(df.head())
+    st.write(data.head())
 
     # Summary statistics
     st.subheader("Summary Statistics")
-    st.write(df.describe())
+    st.write(data.describe())
 
     # Churn distribution
     st.subheader("Churn Distribution")
-    churn_counts = df['churn'].value_counts()
+    churn_counts = data['churn'].value_counts()
     fig, ax = plt.subplots()
     sns.barplot(x=churn_counts.index, y=churn_counts.values, ax=ax)
     ax.set_title("Churn Distribution")
@@ -68,7 +47,7 @@ if option == "Exploratory Data Analysis (EDA)":
 
     # Correlation heatmap
     st.subheader("Correlation Heatmap")
-    corr_matrix = df.corr()
+    corr_matrix = data.corr()
     fig, ax = plt.subplots(figsize=(10, 8))
     sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
     st.pyplot(fig)
@@ -85,9 +64,9 @@ elif option == "Churn Prediction":
     sms_sent = st.number_input("SMS Sent", min_value=0, value=50)
     data_used = st.number_input("Data Used (GB)", min_value=0, value=5)
 
-    # Predict churn when the user clicks the button
-    if st.button("Predict"):
-        # Prepare input data for prediction
+    # Predict button
+    if st.button("Predict Churn"):
+        # Prepare input data
         input_data = pd.DataFrame({
             'age': [age],
             'estimated_salary': [estimated_salary],
@@ -98,9 +77,16 @@ elif option == "Churn Prediction":
 
         # Make prediction
         prediction = model.predict(input_data)[0]
+        probability = model.predict_proba(input_data)[0][1]
 
-        # Display result
+        # Display results
+        st.subheader("Prediction Results")
         if prediction == 1:
             st.error("The customer is likely to churn.")
         else:
             st.success("The customer is not likely to churn.")
+        st.write(f"Probability of churn: {probability:.2%}")
+
+# Footer
+st.sidebar.markdown("---")
+st.sidebar.markdown("Built with ❤️ using Streamlit")
