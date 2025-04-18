@@ -33,7 +33,7 @@ model = joblib.load('churn_model.pkl')
 # Load the dataset (optional, for EDA)
 @st.cache_data  # Cache data to improve performance
 def load_data():
-    return pd.read_csv('data/telecom_churn.csv')
+    return pd.read_csv('telecom_churn.csv')
 
 data = load_data()
 
