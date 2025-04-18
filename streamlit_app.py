@@ -25,9 +25,7 @@ if option == "Exploratory Data Analysis (EDA)":
     st.subheader("Dataset Overview")
   
 
-    # Summary statistics
-    st.subheader("Summary Statistics")
-    st.write(data.describe())
+ 
 
     # Churn distribution
     st.subheader("Churn Distribution")
