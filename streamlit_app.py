@@ -35,8 +35,7 @@ if option == "Exploratory Data Analysis (EDA)":
     st.subheader("Dataset Overview")
   
 
-    st.subheader("Summary Statistics")
-    st.write(data.describe())
+
 
     st.subheader("Churn Distribution")
     churn_counts = data['churn'].value_counts()
