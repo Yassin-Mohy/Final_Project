@@ -3,6 +3,8 @@ import pandas as pd
 import joblib
 import matplotlib.pylab as plt
 import seaborn as sns
+
+model = joblib.load('churn_model.pkl')
 joblib.dump(best_rf, 'churn_model.pkl')
 
 
