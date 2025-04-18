@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import joblib
 
 # Load dataset
-data = pd.read_csv('data/telecom_churn.csv')
+data = pd.read_csv('telecom_churn.csv')
 
 # Preprocess data (example preprocessing steps)
 X = data.drop(columns=['churn'])  # Features
