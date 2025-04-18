@@ -5,12 +5,8 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
-# Load dataset (cached for performance)
-@st.cache_data
-def load_data():
-    return pd.read_csv('telecom_churn.csv')
 
-data = load_data()
+data = pd.read_csv('telecom_churn.csv'')
 
 # Train the model (inside the app to avoid joblib)
 @st.cache_resource
