@@ -1,10 +1,31 @@
+# train_model.py
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+import joblib
+
+# Load dataset
+data = pd.read_csv('data/telecom_churn.csv')
+
+# Preprocess data (example preprocessing steps)
+X = data.drop(columns=['churn'])  # Features
+y = data['churn']  # Target
+
+# Split into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train Random Forest model
+best_rf = RandomForestClassifier(random_state=42)
+best_rf.fit(X_train, y_train)
+
+# Save the trained model
+joblib.dump(best_rf, 'churn_model.pkl')
+
 import streamlit as st
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
-joblib.dump(best_rf, 'churn_model.pkl')
-
 
 # Load the trained model
 model = joblib.load('churn_model.pkl')
@@ -64,9 +85,9 @@ elif option == "Churn Prediction":
     sms_sent = st.number_input("SMS Sent", min_value=0, value=50)
     data_used = st.number_input("Data Used (GB)", min_value=0, value=5)
 
-    # Predict button
-    if st.button("Predict Churn"):
-        # Prepare input data
+    # Predict churn when the user clicks the button
+    if st.button("Predict"):
+        # Prepare input data for prediction
         input_data = pd.DataFrame({
             'age': [age],
             'estimated_salary': [estimated_salary],
@@ -77,16 +98,9 @@ elif option == "Churn Prediction":
 
         # Make prediction
         prediction = model.predict(input_data)[0]
-        probability = model.predict_proba(input_data)[0][1]
 
-        # Display results
-        st.subheader("Prediction Results")
+        # Display result
         if prediction == 1:
             st.error("The customer is likely to churn.")
         else:
             st.success("The customer is not likely to churn.")
-        st.write(f"Probability of churn: {probability:.2%}")
-
-# Footer
-st.sidebar.markdown("---")
-st.sidebar.markdown("Built with ❤️ using Streamlit")
